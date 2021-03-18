@@ -1,0 +1,55 @@
+{
+  "name": "nuxt-capacitor-app",
+  "version": "1.0.0",
+  "private": true,
+  "author": "Mexson Fernandes",
+  "description": "A template of Nuxt, Ionic and Capacitor cross-platform app.",
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "build:prod": "nuxt build --prod",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "format": "pretty-quick",
+    "lint": "./node_modules/.bin/eslint --ignore-path .eslintignore . --fix",
+    "package:linux": "electron-packager electron/ nuxt-capacitor-app --platform linux --arch x64 --out package/ --overwrite",
+    "deb64": "electron-installer-debian --src package/nuxt-capacitor-app-linux-x64 --dest package/installers/ --arch amd64",
+    "package:window": "electron-packager electron/ app --platform win32 --arch x64 --out package/",
+    "resources": "cordova-res-generator -p android,ios && node resources/sync.js android"
+  },
+  "dependencies": {
+    "@capacitor-community/electron": "^1.3.1",
+    "@capacitor/android": "2.4.2",
+    "@capacitor/cli": "^2.4.2",
+    "@capacitor/core": "^2.4.2",
+    "@capacitor/ios": "^2.4.2",
+    "@ionic/core": "^5.4.1",
+    "@ionic/pwa-elements": "^3.0.1",
+    "@ionic/vue": "^5.4.1",
+    "@nuxtjs/eslint-config": "^5.0.0",
+    "@nuxtjs/eslint-module": "^3.0.1",
+    "@nuxtjs/pwa": "^3.2.2",
+    "@nuxtjs/robots": "^2.4.2",
+    "@nuxtjs/sitemap": "^2.4.0",
+    "core-js": "^3.6.5",
+    "nuxt": "^2.14.6"
+  },
+  "devDependencies": {
+    "cordova-res-generator": "^0.4.2",
+    "electron-installer-debian": "^3.1.0",
+    "electron-packager": "^15.1.0",
+    "eslint": "^7.13.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-nuxt": "^1.0.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.3.0",
+    "prettier": "^2.1.2",
+    "pretty-quick": "^3.1.0",
+    "remark-footnotes": "2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged && npm run lint && git add ."
+    }
+  }
+}
